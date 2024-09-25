@@ -22,7 +22,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: factorial-cache-app
-          image: readyoun/factorial-cache-app-for-k8s:0.0.4
+          image: readyoun/factorial-cache:1.0.2
           env:
             - name: APP_LANGUAGE
               valueFrom:

@@ -5,8 +5,8 @@ spring:
   application:
     name: item-service
   profiles:
-    active: docker
-#    active: local
+#    active: docker
+    active: local
   cloud:
     config:
       uri: http://localhost:8080

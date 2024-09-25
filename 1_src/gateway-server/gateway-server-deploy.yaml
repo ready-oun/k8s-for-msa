@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: gateway-server
-          image: readyoun/gateway-server:1.0.0
+          image: readyoun/gateway-server:1.0.2
           ports:
             - containerPort: 8080  # Gateway는 주로 8080 포트를 사용
           env:

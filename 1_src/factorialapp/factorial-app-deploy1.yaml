@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: factorial
-          image: diversim90/factorial-app-for-k8s:0.0.1
+          image: readyoun/factorial-app-for-k8s:1.0.2
 
 # kubectl apply -f factorial-app-deploy1.yaml
 # kubectl -n factorial get pods

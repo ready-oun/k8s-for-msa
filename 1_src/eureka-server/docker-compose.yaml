@@ -1,0 +1,55 @@
+version: '3'
+services:
+  eureka-server:
+    image: readyoun/eureka-server:1.0.2
+    environment:
+      - HOSTNAME=eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - my-network
+
+  item-service:
+    image: readyoun/item-service:1.0.2
+    environment:
+      - EUREKA_SERVER_HOST=eureka-server
+      - EUREKA_SERVER_PORT=8761
+    depends_on:
+      - eureka-server
+      - mysql-service
+    networks:
+      - my-network
+
+  mysql-service:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: itemdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql  # MySQL의 데이터가 영구 저장되도록 볼륨 설정, 컨테이너가 종료되어도 데이터 유지됨.
+    networks:
+      - my-network
+
+  gateway-service:  # Gateway 추가
+    image: readyoun/gateway-server:1.0.2  # Gateway의 Docker 이미지
+    environment:
+      - EUREKA_SERVER_HOST=eureka-server
+      - EUREKA_SERVER_PORT=8761
+    depends_on:
+      - eureka-server
+    ports:
+      - "8080:8080"  # Gateway는 8080 포트로 클라이언트 요청을 처리
+    networks:
+      - my-network
+
+networks:
+  my-network:  # 컨테이너들이 연결될 네트워크 정의.
+    driver: bridge  # 'bridge'는 Docker의 기본 네트워크 드라이버로, 단일 호스트 내에서 컨테이너 간의 통신을 가능하게 함.
+
+volumes:
+  mysql-data:  # MySQL 데이터가 저장될 영구 볼륨 정의. MySQL의 데이터는 여기에 저장되어 컨테이너 종료 후에도 유지됨.
+
+# 각 서비스가 로 동일한 네트워크 내에서 연결되고,
+#  외부에서 해당 서비스에 접근할 수 있도록 포트를 매핑하는 등 구성 요소들이 효율적으로 관리

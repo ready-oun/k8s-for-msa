@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 public class FactorialCalculateService {
 
     /**
-     * HTTP clinet
+     * HTTP client
      */
     private final RestClient factorialClient = RestClient.create();
 

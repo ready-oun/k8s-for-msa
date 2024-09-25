@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: config-server
-          image: readyoun/config-server:1.0.0
+          image: readyoun/config-server:1.0.2
           ports:
             - containerPort: 8080  # Config Server는 8080 포트 사용
           env:

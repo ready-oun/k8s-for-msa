@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: item-service
+  namespace: item-service
   labels:
     app: item-service
 spec:
@@ -16,7 +17,7 @@ spec:
     spec:
       containers:
         - name: item-service
-          image: readyoun/item-service:1.0.0  # 도커 이미지
+          image: readyoun/item-service:1.0.2  # 도커 이미지
           ports:
             - containerPort: 8080  # 서비스 내부 포트
           env:
