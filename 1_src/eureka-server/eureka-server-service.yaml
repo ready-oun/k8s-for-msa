@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka-service
+  labels:
+    app: eureka-server
+spec:
+  type: ClusterIP  # 내부 클러스터에서만 접근 가능
+  selector:
+    app: eureka-server
+  ports:
+    - protocol: TCP
+      port: 8761  # Eureka 서비스 포트
+      targetPort: 8761

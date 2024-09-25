@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server
+  labels:
+    app: config-server
+spec:
+  type: ClusterIP  # 내부 통신을 위한 기본 설정
+  ports:
+    - port: 8080  # 외부에서 접근할 서비스 포트
+      targetPort: 8080  # 컨테이너 내부에서 사용되는 포트
+  selector:
+    app: config-server

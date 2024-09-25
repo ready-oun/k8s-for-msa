@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: gateway-server
+
+  cloud:
+    gateway:
+      routes:
+        - id: item-service
+          uri: lb://item-service
+          predicates:
+            - Path=/v1/item/**
+        - id: factorial-service
+          uri: lb://factorial-app
+          predicates:
+            - Path=/v1/factorial/**
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/ # Docker 네트워크 내 Eureka Server URL
+    register-with-eureka: true
+    fetch-registry: true
+
+logging:
+  file:
+    name: logs/gateway.log
+    max-size: 500MB
+    max-history: 10
+  level:
+    root: info
+    org.msa.gatewayserver: debug

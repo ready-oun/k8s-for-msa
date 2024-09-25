@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: factorial-app
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/ # Eureka Server Docker 경로
+
+logging:
+  file:
+    name: logs/factorial-app.log
+    max-size: 500MB
+    max-history: 10
+  level:
+    root: info
+    org.msa.factorial: debug

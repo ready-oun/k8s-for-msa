@@ -1,0 +1,20 @@
+server:
+  port: 0 # 사용 가능한 port 를 random 하게 설정.
+spring:
+  application:
+    name: item-service
+  profiles:
+    active: docker
+  cloud:
+    config:
+      uri: http://config-server:8080 # Config Server가 8080 포트를 사용 중일 경우
+    loadbalancer:
+      ribbon:
+        enabled: false
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/ # Docker 네트워크 내 Eureka Server URL
+    fetch-registry: true # 다른 서비스의 레지스트리 정보 가져오기
+    register-with-eureka: true # Eureka 서버에 자신 등록

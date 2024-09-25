@@ -1,0 +1,48 @@
+#server:
+#  port: 8070
+#spring:
+#  application:
+#    name: gateway-server
+#  profiles:
+#    active: docker
+##    active: local
+#  cloud:
+#    config:
+#      uri: http://172.18.0.1:8080
+#    loadbalancer:
+#      ribbon:
+#        enabled: false
+#
+
+spring:
+  application:
+    name: gateway-server
+    profiles:
+      active: docker
+  cloud:
+    config:
+      uri: http://config-server:8080 # Docker 네트워크에서 Config Server URL
+      fail-fast: true # Config 서버 연결 실패 시 즉시 중단
+      retry:
+        max-attempts: 3 # 연결 재시도 횟수
+    loadbalancer:
+      health-check:
+        enabled: true # 마이크로서비스들의 상태 확인
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/ # Eureka 서버 URL
+    fetch-registry: true # 다른 서비스의 레지스트리 정보 가져오기
+    register-with-eureka: true # Eureka 서버에 자신 등록
+
+logging:
+  level:
+    root: info
+    org.springframework.cloud.gateway: debug # Gateway 관련 로깅 수준 설정

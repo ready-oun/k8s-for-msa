@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: item-service
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://h2-database:1521/test # Docker 네트워크 상의 H2 데이터베이스 URL
+    username: sa
+    password: sa
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/ # Eureka Server Docker 네트워크 경로
+
+logging:
+  file:
+    name: logs/item-service.log
+    max-size: 500MB
+    max-history: 10
+  level:
+    root: info
+    org.msa.item: debug

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: item-service
+  labels:
+    app: item-service
+spec:
+  replicas: 2  # 고가용성을 위한 복제본 수
+  selector:
+    matchLabels:
+      app: item-service
+  template:
+    metadata:
+      labels:
+        app: item-service
+    spec:
+      containers:
+        - name: item-service
+          image: readyoun/item-service:1.0.0  # 도커 이미지
+          ports:
+            - containerPort: 8080  # 서비스 내부 포트
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mysql-service:3306/itemdb"  # MySQL 연결 정보
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "root"  # MySQL 사용자
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "your-password"  # MySQL 비밀번호
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: "http://eureka-server:8761/eureka/"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "docker"
+          readinessProbe:
+            httpGet:
+              path: /actuator/health  # 헬스 체크 엔드포인트
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10

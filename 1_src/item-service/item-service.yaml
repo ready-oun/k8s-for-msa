@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: item-service
+  labels:
+    app: item-service
+spec:
+  type: ClusterIP  # 클러스터 내부에서만 접근할 수 있도록 설정
+  ports:
+    - protocol: TCP
+      port: 8080  # 서비스가 노출되는 포트
+      targetPort: 8080  # Pod 내부의 컨테이너 포트
+  selector:
+    app: item-service
