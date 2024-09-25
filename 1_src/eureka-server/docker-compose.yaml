@@ -1,7 +1,7 @@
 version: '3'
 services:
   eureka-server:
-    image: readyoun/eureka-server:1.0.2
+    image: readyoun/eureka-server:1.0.3
     environment:
       - HOSTNAME=eureka-server
     ports:

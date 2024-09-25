@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: eureka-server
-          image: readyoun/eureka-server:1.0.2
+          image: readyoun/eureka-server:1.0.3
           ports:
             - containerPort: 8761  # Eureka는 기본적으로 8761 포트를 사용
           env:
@@ -32,11 +32,11 @@ spec:
             httpGet:
               path: /actuator/health
               port: 8761
-            initialDelaySeconds: 15
-            periodSeconds: 5
+            initialDelaySeconds: 30
+            periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /actuator/health
               port: 8761
-            initialDelaySeconds: 30
-            periodSeconds: 10
+            initialDelaySeconds: 60
+            periodSeconds: 15
