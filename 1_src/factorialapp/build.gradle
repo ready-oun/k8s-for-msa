@@ -36,7 +36,7 @@ jib {
         image = "openjdk:17"
     }
     to {
-        image = 'readyoun/config-server:1.0.0'
+        image = 'readyoun/factorial-app:1.0.0'
     }
     container {
         creationTime = "USE_CURRENT_TIMESTAMP"
