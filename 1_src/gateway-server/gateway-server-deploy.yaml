@@ -5,7 +5,7 @@ metadata:
   labels:
     app: gateway-server
 spec:
-  replicas: 2  # 2개의 복제본을 생성하여 고가용성 유지
+  replicas: 1  # 2개의 복제본을 생성하여 고가용성 유지
   selector:
     matchLabels:
       app: gateway-server
@@ -16,14 +16,14 @@ spec:
     spec:
       containers:
         - name: gateway-server
-          image: readyoun/gateway-server:1.0.2
+          image: readyoun/gateway-server:2.0.0
           ports:
-            - containerPort: 8080  # Gateway는 주로 8080 포트를 사용
+            - containerPort: 8090  # Gateway는 주로 8080 포트를 사용
           env:
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: "http://eureka-server:8761/eureka/"
             - name: SPRING_CLOUD_CONFIG_URI
-              value: "http://config-server:8080"
+              value: "http://config-server:8888"
           resources:
             limits:
               memory: "512Mi"
@@ -31,12 +31,12 @@ spec:
           readinessProbe:
             httpGet:
               path: /actuator/health
-              port: 8080
+              port: 8090
             initialDelaySeconds: 15
             periodSeconds: 5
           livenessProbe:
             httpGet:
               path: /actuator/health
-              port: 8080
+              port: 8090
             initialDelaySeconds: 30
             periodSeconds: 10

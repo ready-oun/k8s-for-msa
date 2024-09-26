@@ -18,10 +18,10 @@ public class FactorialCalculateService {
 
         /**
          * HTTP clinet 를 이용해서,
-         * factorial-app-service:8080/factorial?n=10 호출해서
+         * factorial-app-service:8082/factorial?n=10 호출해서
          * 결과를 받을 수 있도록 구현
          *
-         * factorial-app-service:8080 호출
+         * factorial-app-service: 호출
          * =>
          * 두 pod
          *   - my-factorial-app~~~~
@@ -33,7 +33,7 @@ public class FactorialCalculateService {
 
         String result = factorialClient.get()
                 // K8S 의 Service(ClusterIP) 를 이용해서 factorial-app 을 사용.
-                .uri("http://factorial-app-service:8080/factorial?n="+n)
+                .uri("http://factorial-app-service:8082/factorial?n="+n)
                 // 호출한 결과를 받아옴
                 .retrieve()
                 // request 에 대한 결과에 에러가 발생했다면,

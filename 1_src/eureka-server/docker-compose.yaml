@@ -1,7 +1,7 @@
 version: '3'
 services:
   eureka-server:
-    image: readyoun/eureka-server:1.0.3
+    image: readyoun/eureka-server:2.0.0
     environment:
       - HOSTNAME=eureka-server
     ports:
@@ -10,7 +10,7 @@ services:
       - my-network
 
   item-service:
-    image: readyoun/item-service:1.0.2
+    image: readyoun/item-service:2.0.0
     environment:
       - EUREKA_SERVER_HOST=eureka-server
       - EUREKA_SERVER_PORT=8761
@@ -33,14 +33,14 @@ services:
       - my-network
 
   gateway-service:  # Gateway 추가
-    image: readyoun/gateway-server:1.0.2  # Gateway의 Docker 이미지
+    image: readyoun/gateway-server:2.0.0  # Gateway의 Docker 이미지
     environment:
       - EUREKA_SERVER_HOST=eureka-server
       - EUREKA_SERVER_PORT=8761
     depends_on:
       - eureka-server
     ports:
-      - "8080:8080"  # Gateway는 8080 포트로 클라이언트 요청을 처리
+      - "8090:8090"  # Gateway는 8090 포트로 클라이언트 요청을 처리
     networks:
       - my-network
 

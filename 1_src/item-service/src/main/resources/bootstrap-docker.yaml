@@ -1,5 +1,6 @@
 server:
-  port: 0 # 사용 가능한 port 를 random 하게 설정.
+#  port: 0 # 사용 가능한 port 를 random 하게 설정.
+  port: 5000 # 사용 가능한 port 를 random 하게 설정.
 spring:
   application:
     name: item-service
@@ -7,7 +8,7 @@ spring:
     active: docker
   cloud:
     config:
-      uri: http://config-server:8080 # Config Server가 8080 포트를 사용 중일 경우
+      uri: http://config-server:8888 # Config Server가 8888 포트를 사용 중일 경우
     loadbalancer:
       ribbon:
         enabled: false

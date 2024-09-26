@@ -11,7 +11,7 @@ spring:
         encrypt:
           enabled: false
 server:
-  port: 8080
+  port: 8888
 
 eureka:
   client:

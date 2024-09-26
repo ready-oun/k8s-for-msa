@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
         - name: config-server
-          image: readyoun/config-server:1.0.2
+          image: readyoun/config-server:2.0.0
           ports:
-            - containerPort: 8080  # Config Server는 8080 포트 사용
+            - containerPort: 8888  # Config Server는 8888 포트 사용
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "native"
@@ -33,12 +33,12 @@ spec:
           readinessProbe:
             httpGet:
               path: /actuator/health
-              port: 8080
+              port: 8888
             initialDelaySeconds: 15
             periodSeconds: 5
           livenessProbe:
             httpGet:
               path: /actuator/health
-              port: 8080
+              port: 8888
             initialDelaySeconds: 30
             periodSeconds: 10

@@ -4,7 +4,7 @@ metadata:
   name: my-factorial-app
   namespace: factorial
 spec:
-  replicas: 2
+  replicas: 1
   ######## 02. 업데이트 전략 추가 - start ########
   strategy:
     type: RollingUpdate
@@ -25,7 +25,7 @@ spec:
       ######## 03. Graceful shutdown - end ########
       containers:
         - name: factorial
-          image: readyoun/factorial-app:1.0.2
+          image: readyoun/factorial-app:2.0.0
           ######## 04. Lifecycle hook 추가 - start ########
           lifecycle:
             preStop:
@@ -36,14 +36,14 @@ spec:
           startupProbe:
             httpGet:
               path: /probe/startup
-              port: 8080
+              port: 8082
             initialDelaySeconds: 15
             periodSeconds: 1
             failureThreshold: 10
           readinessProbe:
             httpGet:
               path: /probe/ready
-              port: 8080
+              port: 8082
             initialDelaySeconds: 15
             periodSeconds: 1
             successThreshold: 2
@@ -51,7 +51,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /probe/live
-              port: 8080
+              port: 8082
             initialDelaySeconds: 15
             periodSeconds: 1
             failureThreshold: 3

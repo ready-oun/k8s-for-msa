@@ -79,7 +79,7 @@ jib {
         image = "openjdk:17"
     }
     to {
-        image = 'readyoun/item-service:1.0.1'
+        image = 'readyoun/item-service:2.0.0'
     }
     container {
         creationTime = "USE_CURRENT_TIMESTAMP"

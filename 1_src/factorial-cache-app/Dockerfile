@@ -11,7 +11,7 @@ COPY . .
 RUN ./gradlew build
 
 # Expose the port the application will run on
-EXPOSE 8080
+EXPOSE 8083
 
 # Define the command to run the application
 CMD ["java", "-jar", "build/libs/factorial-cache-app.jar"]

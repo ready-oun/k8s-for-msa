@@ -10,5 +10,5 @@ spec:
     app: gateway-server
   ports:
     - protocol: TCP
-      port: 8080  # Gateway 서비스 포트
-      targetPort: 8080
+      port: 8090  # Gateway 서비스 포트
+      targetPort: 8090

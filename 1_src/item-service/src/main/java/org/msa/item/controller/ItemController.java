@@ -28,7 +28,7 @@ public class ItemController {
 
     /**
      *
-     * http://localhost:8080/v1/item/add
+     * http://localhost:8081/v1/item/add
      *
      * {
      *     "id" : "1234567890",
@@ -41,7 +41,7 @@ public class ItemController {
      *
      *
      *
-     * http://localhost:8080/v1/item/add/F
+     * http://localhost:8081/v1/item/add/F
      *
      * {
      *      *     "id" : "1234567890",

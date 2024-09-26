@@ -4,7 +4,7 @@ metadata:
   name: my-factorial-app
   namespace: factorial
 spec:
-  replicas: 2
+  replicas: 1
   ######## 02.업데이트 전략 추가 - start ########
   strategy:
     type: RollingUpdate

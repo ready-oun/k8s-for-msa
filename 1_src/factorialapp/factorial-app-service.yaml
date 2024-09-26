@@ -19,7 +19,7 @@ spec:
       #
       # factorial-app-service:8080 으로 호출하게 되면,
       # factorial-app 를 호출해서 사용할 수 있게 됨
-      port: 8080
+      port: 8082
 #
 # kubectl apply -f .\factorial-app-service.yaml
 # kubectl -n factorial get service

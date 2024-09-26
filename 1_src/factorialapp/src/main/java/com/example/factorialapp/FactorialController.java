@@ -20,7 +20,7 @@ public class FactorialController {
     }
 
 
-    // http://localhost:8080/factorial?n=10
+    // http://localhost:8082/factorial?n=10
     @GetMapping("/factorial")
     public BigDecimal factorial(@RequestParam("n") int n) {
         if (n<0) {

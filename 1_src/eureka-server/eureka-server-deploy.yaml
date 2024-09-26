@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: eureka-server
-          image: readyoun/eureka-server:1.0.3
+          image: readyoun/eureka-server:2.0.0
           ports:
             - containerPort: 8761  # Eureka는 기본적으로 8761 포트를 사용
           env:

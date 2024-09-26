@@ -33,7 +33,7 @@ jib {
         image = "openjdk:17"
     }
     to {
-        image = 'readyoun/factorial-cache-app:1.0.2'
+        image = 'readyoun/factorial-cache-app:2.0.0'
     }
     container {
         creationTime = "USE_CURRENT_TIMESTAMP"
