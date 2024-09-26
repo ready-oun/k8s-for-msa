@@ -51,7 +51,7 @@ jib {
 		image = "openjdk:17"
 	}
 	to {
-		image = 'readyoun/gateway-server:2.0.0'
+		image = 'readyoun/gateway-server:2.0.3'
 	}
 	container {
 		creationTime = "USE_CURRENT_TIMESTAMP"

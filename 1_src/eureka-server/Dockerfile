@@ -6,8 +6,8 @@ COPY build.gradle .
 COPY settings.gradle .
 COPY src src
 
-RUN rm src/main/resources/bootstrap.yaml
-RUN mv src/main/resources/bootstrap-docker.yaml src/main/resources/bootstrap.yaml
+#RUN rm src/main/resources/bootstrap.yaml
+#RUN mv src/main/resources/bootstrap-docker.yaml src/main/resources/bootstrap.yaml
 RUN chmod +x ./gradlew
 RUN dos2unix ./gradlew
 RUN ./gradlew bootJar

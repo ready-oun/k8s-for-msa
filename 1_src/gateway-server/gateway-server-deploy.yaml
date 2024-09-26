@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gateway-server
+  namespace: ku
   labels:
     app: gateway-server
 spec:
@@ -16,7 +17,7 @@ spec:
     spec:
       containers:
         - name: gateway-server
-          image: readyoun/gateway-server:2.0.0
+          image: readyoun/gateway-server:2.0.3
           ports:
             - containerPort: 8090  # Gateway는 주로 8080 포트를 사용
           env:

@@ -21,7 +21,7 @@ spring:
       active: docker
   cloud:
     config:
-      uri: http://config-server: # Docker 네트워크에서 Config Server URL
+      uri: http://config-server:8888 # Docker 네트워크에서 Config Server URL
       fail-fast: true # Config 서버 연결 실패 시 즉시 중단
       retry:
         max-attempts: 3 # 연결 재시도 횟수

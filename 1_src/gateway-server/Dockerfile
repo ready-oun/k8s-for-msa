@@ -6,8 +6,8 @@ COPY build.gradle .
 COPY settings.gradle .
 COPY src src
 
-RUN rm src/main/resources/bootstrap.yaml
-RUN mv src/main/resources/bootstrap-docker.yaml src/main/resources/bootstrap.yaml
+RUN rm src/main/resources/
+RUN mv src/main/resources/bootstrap-docker.yaml src/main/resources/
 RUN chmod +x ./gradlew
 RUN dos2unix ./gradlew
 RUN ./gradlew bootJar
@@ -18,6 +18,6 @@ WORKDIR /app
 
 COPY --from=builder build/libs/*.jar /app/app.jar
 
-EXPOSE 8070
+EXPOSE 8090
 
 ENTRYPOINT ["java", "-jar", "app.jar"]

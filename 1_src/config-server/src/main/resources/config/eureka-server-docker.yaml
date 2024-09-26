@@ -20,7 +20,8 @@ eureka:
   client:
     # defaultZone 은 유레카 서버의 url 정보를 설정
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/  # Eureka Server의 동적 호스트 설정
+      defaultZone: http://eureka-server:8761/eureka/
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/  # Eureka Server의 동적 호스트 설정
     # register-with-eureka 는 유레카 서버에 다른 서버 및 서비스 관련 정보를 등록할 것인지 여부인데
     # 현재 yaml 파일이 유레카 설정 파일임으로 굳디 유레카 서버에 유레카 정보를
     # 설정할 필요가 없으므로 false 로 설정.

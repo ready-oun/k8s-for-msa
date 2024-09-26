@@ -50,7 +50,7 @@ jib {
 		image = "openjdk:17"
 	}
 	to {
-		image = 'readyoun/eureka-server:2.0.0'
+		image = 'readyoun/eureka-server:2.1.5'
 	}
 	container {
 		creationTime = "USE_CURRENT_TIMESTAMP"
