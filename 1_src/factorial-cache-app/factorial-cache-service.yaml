@@ -9,5 +9,5 @@ spec:
     app: factorial-cache-app
   ports:
     - protocol: TCP
-      port:
+      port: 8083
 

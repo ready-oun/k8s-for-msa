@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  namespace: item
+spec:
+  ports:
+    - port: 3306  # MySQL 포트
+      targetPort: 3306
+  selector:
+    app: mysql-service  # MySQL Deployment와 일치하는 레이블
+  clusterIP: None  # Headless 서비스로 설정, 직접 접근 가능하게 함

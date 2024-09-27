@@ -1,0 +1,25 @@
+server:
+  port: 5000
+spring:
+  application:
+    name: item-service
+  main:
+    web-application-type: reactive # item-service run failed 의 지시에 따라 설정
+  cloud:
+    config:
+      uri: http://config-server:8080 # Config Server가 8888 포트를 사용 중일 경우
+    loadbalancer:
+      ribbon:
+        enabled: false
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://eureka-server:8761/eureka/ # Docker 네트워크 내 Eureka Server URL
+#    fetch-registry: true # 다른 서비스의 레지스트리 정보 가져오기
+#    register-with-eureka: true # Eureka 서버에 자신 등록
+
+
+#Reactive 모드: spring.main.web-application-type 설정은 Spring Boot가 어떤 모드에서 애플리케이션을 실행할지 지정합니다. reactive는 WebFlux 기반의 비동기 프로그래밍을 위한 모드로, Spring Cloud Gateway는 이 모드에서 작동합니다.
+#
+#Spring MVC와 충돌 방지: Spring Cloud Gateway는 WebFlux를 필요로 하고, Spring MVC(Spring Boot의 기본 웹 모드)는 이를 지원하지 않기 때문에, Spring MVC와 함께 사용할 수 없습니다. reactive 모드로 변경함으로써 이 충돌을 방지할 수 있습니다.

@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-item-factorial-to-eureka
+  namespace: ku  # eureka-server가 있는 네임스페이스
+spec:
+  podSelector:
+    matchLabels:
+      app: eureka-server  # eureka-server에 대한 정책
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: item  # item 네임스페이스에서 들어오는 트래픽 허용
+        - namespaceSelector:
+            matchLabels:
+              name: factorial  # factorial 네임스페이스에서 들어오는 트래픽 허용
+      ports:
+        - protocol: TCP
+          port: 8761  # Eureka 서버가 사용하는 포트

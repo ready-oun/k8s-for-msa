@@ -5,7 +5,7 @@ spring:
 #    driver-class-name: org.h2.Driver
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:h2:tcp://h2-database:1521/test # Docker 네트워크 상의 H2 데이터베이스 URL
-    url: jdbc:mysql://localhost:3306/itemsvc
+    url: jdbc:mysql://mysql-service:3306/itemdb
     username: root
     password: 1234
   jpa:
@@ -24,7 +24,8 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     serviceUrl:
-      defaultZone: http://eureka-server:8761/eureka/ # Eureka Server Docker 네트워크 경로
+#      defaultZone: http://eureka-server:8761/eureka/ # Eureka Server Docker 네트워크 경로
+      defaultZone: http://eureka-server.ku.svc.cluster.local:8761/
 
 logging:
   file:

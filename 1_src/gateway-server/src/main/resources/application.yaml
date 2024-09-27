@@ -1,0 +1,20 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: gateway-server
+  profiles:
+    active: docker
+#    active: local
+  cloud:
+    config:
+      uri: http://localhost:8090
+    loadbalancer:
+      ribbon:
+        enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans

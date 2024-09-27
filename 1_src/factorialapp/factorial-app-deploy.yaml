@@ -25,7 +25,7 @@ spec:
       ######## 03. Graceful shutdown - end ########
       containers:
         - name: factorial
-          image: readyoun/factorial-app:2.0.0
+          image: readyoun/factorial-app:2.0.3
           ######## 04. Lifecycle hook 추가 - start ########
           lifecycle:
             preStop:

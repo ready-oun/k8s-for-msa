@@ -41,6 +41,12 @@ eureka:
       defaultZone: http://eureka-server:8761/eureka/ # Eureka 서버 URL
     fetch-registry: true # 다른 서비스의 레지스트리 정보 가져오기
     register-with-eureka: true # Eureka 서버에 자신 등록
+  instance:
+    preferIpAddress: true
+    hostname: gateway-server
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+
 
 logging:
   level:

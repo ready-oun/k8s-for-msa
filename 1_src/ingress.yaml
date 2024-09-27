@@ -1,30 +1,27 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: global-ingress
+  name: ingress
   namespace: ku
-  annotations:
-    # URL 경로의 나머지 부분을 유지하면서 해당 서비스로 전달
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/enable-access-log: "true"
 spec:
-  ingressClassName: nginx  # Ingress 클래스 명시
   rules:
-    - host: eureka.localhost
     - http:
         paths:
+          #path 로 요청이 들어오면, 해당 요청을 지정된 backend 로 보내도록 하는 설정
           - pathType: Prefix
-            path: /eureka
-            backend:
-              service:
-                name: eureka-server
-                port:
-                  number: 8761
-          - pathType: Prefix
-            path: /
+            path: /         #해당 경로로 들어오는 요청을 gateway-service로 라우팅함.
             backend:
               service:
                 name: gateway-server
                 port:
                   number: 8090
-
+    - host: eureka.localhost
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: eureka-server
+                port:
+                  number: 8761

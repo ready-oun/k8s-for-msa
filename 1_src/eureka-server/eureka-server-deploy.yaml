@@ -6,7 +6,7 @@ metadata:
   labels:
     app: eureka-server
 spec:
-  replicas: 1  # 1개의 복제본을 사용하여 단일 Eureka 서버 운영
+  replicas: 1  # 필요한 경우 복제본을 늘릴 수 있습니다.
   selector:
     matchLabels:
       app: eureka-server
@@ -17,27 +17,24 @@ spec:
     spec:
       containers:
         - name: eureka-server
-          image: readyoun/eureka-server:2.1.5
+          image: readyoun/eureka-server:2.2.8  # 빌드한 Docker 이미지
           ports:
-            - containerPort: 8761  # Eureka는 기본적으로 8761 포트를 사용
+            - containerPort: 8761  # Eureka 서버가 사용하는 포트
           env:
-            - name: EUREKA_CLIENT_REGISTER_WITH_EUREKA
-              value: "false"
-            - name: EUREKA_CLIENT_FETCH_REGISTRY
-              value: "false"
-          resources:
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
+            - name: JAVA_OPTS  # 필요에 따라 JVM 옵션 설정 가능
+              value: "-Xms512m -Xmx1024m"
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: 8761
-            initialDelaySeconds: 30
+            initialDelaySeconds: 10
             periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /actuator/health
               port: 8761
-            initialDelaySeconds: 60
-            periodSeconds: 15
+            initialDelaySeconds: 15
+            periodSeconds: 20
+      restartPolicy: Always

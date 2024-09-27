@@ -10,7 +10,7 @@ spring:
           predicates:
             - Path=/v1/item/**
         - id: factorial-service
-          uri: lb://factorial-app
+          uri: lb://factorial-app # cache-app 으로 가야 하나? 
           predicates:
             - Path=/v1/factorial/**
 

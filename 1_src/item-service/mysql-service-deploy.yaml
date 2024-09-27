@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-service
+  namespace: item  # item-service와 동일한 네임스페이스 사용
+  labels:
+    app: mysql-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-service
+  template:
+    metadata:
+      labels:
+        app: mysql-service
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:5.7  # MySQL 버전
+          ports:
+            - containerPort: 3306  # MySQL 기본 포트
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "1234"  # MySQL root 비밀번호
+            - name: MYSQL_DATABASE
+              value: "itemdb"  # 생성할 데이터베이스 이름
+#          volumeMounts:
+#            - name: mysql-persistent-storage
+#              mountPath: /var/lib/mysql  # MySQL 데이터 경로
+#      volumes:
+#        - name: mysql-persistent-storage
+#          persistentVolumeClaim:
+#            claimName: mysql-pvc  # PVC는 따로 정의되어야 함

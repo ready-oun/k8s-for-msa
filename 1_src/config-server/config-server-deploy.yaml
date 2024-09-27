@@ -3,10 +3,8 @@ kind: Deployment
 metadata:
   name: config-server
   namespace: ku
-  labels:
-    app: config-server
 spec:
-  replicas: 1  # 복제본 수
+  replicas: 1
   selector:
     matchLabels:
       app: config-server
@@ -17,29 +15,9 @@ spec:
     spec:
       containers:
         - name: config-server
-          image: readyoun/config-server:2.0.5
+          image: readyoun/config-server:2.2.4  # 올바른 이미지 이름으로 교체
           ports:
-            - containerPort: 8888  # Config Server는 8888 포트 사용
+            - containerPort: 8080  # Config Server의 포트
           env:
             - name: SPRING_PROFILES_ACTIVE
-              value: "native"
-            - name: SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS
-              value: "classpath:/config"
-            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              value: "http://eureka-server:8761/eureka/"
-          resources:
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
-          readinessProbe:
-            httpGet:
-              path: /actuator/health
-              port: 8888
-            initialDelaySeconds: 15
-            periodSeconds: 5
-          livenessProbe:
-            httpGet:
-              path: /actuator/health
-              port: 8888
-            initialDelaySeconds: 30
-            periodSeconds: 10
+              value: native

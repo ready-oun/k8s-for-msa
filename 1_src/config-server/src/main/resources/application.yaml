@@ -11,4 +11,9 @@ spring:
         encrypt:
           enabled: false
 server:
-  port: 8888
+  port: 8080
+
+logging:
+  level:
+    root: info
+    org.msa.configserver: debug

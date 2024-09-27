@@ -1,7 +1,7 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.2.0'
-    id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.springframework.boot' version '3.0.3'
+    id 'io.spring.dependency-management' version '1.1.6'
     // gradle jib 를 사용해서 application container image 생성.
     // docker hub push 가능.
     id 'com.google.cloud.tools.jib' version '3.4.0'
@@ -36,7 +36,7 @@ jib {
         image = "openjdk:17"
     }
     to {
-        image = 'readyoun/factorial-app:2.0.0'
+        image = 'readyoun/factorial-app:2.0.3'
     }
     container {
         creationTime = "USE_CURRENT_TIMESTAMP"

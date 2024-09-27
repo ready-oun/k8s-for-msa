@@ -1,15 +1,11 @@
 spring:
   application:
     name: eureka-server
-  profiles:
-    active: docker
-#    activate:
-#      on-profile: localhost
+#  profiles:
 #    active: docker
   cloud:
     config:
-#      uri: http://localhost:8888
-      uri: http://config-server:8888
+      uri: http://config-server:8080
     loadbalancer:
       ribbon:
         enabled: false

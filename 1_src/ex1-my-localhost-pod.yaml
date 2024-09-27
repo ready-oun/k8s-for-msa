@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-localhost-pod
+spec:
+  containers:
+    # 호출을 받는 continaer를 nginx로 정의
+    - name: nginx-container
+      image: nginx
+    # nginx container를 호출하는 컨테이너를 정의
+    - name: curl-container
+      image: curlimages/curl
+      # curl 은  nginx 처럼 프로세스로 계속 실행이 되는 것이 아님.
+      # 시작하자마자 종료될 수 있으므로, 바로 종료되는 것을 방지하기 위해서
+      # sleep 을 설정해서 명령어를 받을 수 있도록 해야 한다.
+      command: ["sh", "-c", "sleep 180"] # 180 초로 설정
